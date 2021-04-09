@@ -1,0 +1,13 @@
+<h2>プロフィール</h2>
+
+<div>
+  <%= link_to "住民一覧へ戻る",  users_path, class: "post" %>
+</div>
+
+<div>
+  名前<%= @user.user_name %>
+</div>
+<div>
+  誕生日<%= @user.birthday %>
+</div>
+<%= image_tag @user.image %>
