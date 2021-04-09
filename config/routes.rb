@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   devise_for :houses
-  root to: "users#index"
+  root to: "pages#toppage"
+  resources :users, only: [:index, :new, :create]
 end

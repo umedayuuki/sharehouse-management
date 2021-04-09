@@ -14,9 +14,8 @@
       <div class="header__bar row">
         <h2 class="grid-6"><a href="/">Sharehouse-Management</a></h2>
         <% if house_signed_in? %>
-          <div class="user_nav grid-6">
+              <%= current_house.house_name %>でログインしています
               <%= link_to "ログアウト", destroy_house_session_path, method: :delete %>
-              <%= link_to "ユーザー登録", "#", class: "post" %>
           </div>
        <% else %>
           <div class="grid-6">
