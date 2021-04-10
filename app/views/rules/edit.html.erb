@@ -1,0 +1,5 @@
+<h3>編集する</h3>
+<%= form_with(model: @rule, local: true) do |form| %>
+      <%= form.text_area :content, placeholder: "content", rows: "10" %>
+      <%= form.submit "SEND" %>
+<% end %>

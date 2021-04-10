@@ -17,6 +17,15 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
   end
 
+  def edit
+    @rule = Rule.find(params[:id])
+  end
+
+  def update
+    rule = Rule.find(params[:id])
+    rule.update(rule_params)
+  end
+  
   def destroy
     rule = Rule.find(params[:id])
     rule.destroy
