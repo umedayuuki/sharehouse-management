@@ -6,5 +6,7 @@
 </div>
 
 <% @rules.each do |rule| %>
-  <%= rule.content %> 
+  <%= link_to rule_path(rule.id) do %>
+    <%= rule.content %> 
+  <% end %>
 <% end %>

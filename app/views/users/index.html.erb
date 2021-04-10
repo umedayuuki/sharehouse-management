@@ -7,9 +7,11 @@
 <div>
 <%= link_to "住民を登録する",  new_user_path, class: "post" %>
 </div>
-<% @users.each do |user| %>
-  <%= link_to user_path(user.id) do %>
-    <%= user.user_name %>
-    <%= image_tag user.image %>
+  <% @users.each do |user| %>
+    <% if current_house.id == user.house_id %>
+      <%= link_to user_path(user.id) do %>
+        <%= user.user_name %>
+        <%= image_tag user.image %>
+      <% end %>
+   <% end %>
   <% end %>
-<% end %>

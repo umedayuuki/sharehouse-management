@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SharehouseManagement</title>
+    <title>シェアハウス管理アプリ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,9 +12,9 @@
   <body>
     <header class="header">
       <div class="header__bar row">
-        <h2 class="grid-6"><a href="/">Sharehouse-Management</a></h2>
+        <h1 class="grid-6"><a href="/">シェアハウス管理アプリ</a></h1>
         <% if house_signed_in? %>
-              <%= current_house.house_name %>でログインしています
+              <%= current_house.house_name %>でログイン中
               <%= link_to "ログアウト", destroy_house_session_path, method: :delete %>
           </div>
        <% else %>
