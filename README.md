@@ -31,6 +31,7 @@ ER図
 
 ### Association
 
+- has_many :rules
 - has_many :money
 - has_many :works
 - has_many :schedules
@@ -54,11 +55,11 @@ ER図
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | content | text       | null: false                    |
-| house   | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
 
 ### Association
 
-- belong_to :house
+- belong_to :user
 
 ## money テーブル
 

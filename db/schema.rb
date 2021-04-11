@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 2021_04_09_153122) do
 
   create_table "rules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", null: false
-    t.bigint "house_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["house_id"], name: "index_rules_on_house_id"
+    t.index ["user_id"], name: "index_rules_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,6 +63,6 @@ ActiveRecord::Schema.define(version: 2021_04_09_153122) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "rules", "houses"
+  add_foreign_key "rules", "users"
   add_foreign_key "users", "houses"
 end
