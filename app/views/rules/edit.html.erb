@@ -1,3 +1,6 @@
+<div>
+  <%= link_to "ルールへ戻る",  rules_path, class: "post" %>
+</div>
 <h3>編集する</h3>
 <%= form_with(model: @rule, local: true) do |form| %>
       <%= form.text_area :content, placeholder: "content", rows: "10" %>
