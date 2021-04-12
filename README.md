@@ -17,7 +17,6 @@ https://docs.google.com/spreadsheets/d/1WBduySmRhI-xivZSVaQRaqVBq4r9shkxDwQhH1DS
 
 ## データーベース設計
 ER図  
-<img width="765" alt="シェアハウスER図" src="https://user-images.githubusercontent.com/74130074/114115699-4889ef80-991e-11eb-9ebd-741b51d39b68.png">
 
 # テーブル設計
 
@@ -31,11 +30,13 @@ ER図
 
 ### Association
 
-- has_many :rules
-- has_many :money
-- has_many :works
-- has_many :schedules
-- belong_to :house
+- has_many  :chats
+- has_many  :rules
+- has_many  :moneys
+- has_many  :works
+- has_many  :schedules
+- has_many  :todos
+- belongs_to :house
 
 ## houses テーブル
 
@@ -48,42 +49,53 @@ ER図
 ### Association
 
 - has_many :users
-- has_one : rule
+- has_many :chats
+- has_many :rules
+- has_many :moneys
+- has_many :works
+- has_many :schedules
+- has_many :todos
 
 ## rules テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | content | text       | null: false                    |
-| user   | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| house   | references | null: false, foreign_key: true |
 
 ### Association
 
-- belong_to :user
+- belongs_to :user
+- belongs_to :house
 
-## money テーブル
+## moneys テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | item_name | string     | null: false                    |
 | price     | integer    | null: false                    |
 | user      | references | null: false, foreign_key: true |
+| house     | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :house
 
-## todo テーブル
+## todos テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | todo_name | string     | null: false                    |
 | limit     | string     | null: false                    |
 | user      | references | null: false, foreign_key: true |
+| house     | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :house
 
 ## works テーブル
 
@@ -91,10 +103,12 @@ ER図
 | --------- | ---------- | ------------------------------ |
 | work_name | string     | null: false                    |
 | user      | references | null: false, foreign_key: true |
+| house     | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :house
 
 ## schedules テーブル
 
@@ -103,7 +117,22 @@ ER図
 | day    | string     | null: false                    |
 | event  | string     | null: false                    |
 | user   | references | null: false, foreign_key: true |
+| house  | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :house
+
+## chats テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| text   | string     | null: false                    |
+| user   | references | null: false, foreign_key: true |
+| house  | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :house

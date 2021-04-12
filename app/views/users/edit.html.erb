@@ -1,7 +1,10 @@
+<div>
+  <%= link_to "一覧へ戻る",  users_path, class: "post" %>
+</div>
  <h3>編集する</h3>
     <%= form_with(model: @user, local: true) do |form| %>
-      <%= form.file_field :image, id:"item-image" %>
-      <%= form.text_field :user_name, placeholder: "User_name" %>
-      <%= form.text_field :birthday, placeholder: "Birthday" %>
+      <%= form.file_field :image, id:"item-image" %><br>
+      <%= form.text_field :user_name, placeholder: "User_name" %><br>
+      <%= form.text_field :birthday, placeholder: "Birthday" %><br>
       <%= form.submit "SEND" %>
     <% end %>

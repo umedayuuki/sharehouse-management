@@ -7,10 +7,17 @@ class RulesController < ApplicationController
 
   def new
     @rule = Rule.new
+    @users = User.all
   end
 
   def create
-    Rule.create(rule_params)
+    @users = User.all
+    @rule = Rule.new(rule_params)
+    if @rule.save
+      redirect_to rules_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -19,13 +26,15 @@ class RulesController < ApplicationController
 
   def edit
     @rule = Rule.find(params[:id])
+    @users = User.all
   end
 
   def update
+    @users = User.all
     rule = Rule.find(params[:id])
     rule.update(rule_params)
   end
-  
+
   def destroy
     rule = Rule.find(params[:id])
     rule.destroy
@@ -34,6 +43,6 @@ class RulesController < ApplicationController
   private
   
   def rule_params
-    params.require(:rule).permit(:content).merge(house_id: current_house.id)
+    params.require(:rule).permit(:title, :content, :user_name).merge(house_id: current_house.id)
   end
 end

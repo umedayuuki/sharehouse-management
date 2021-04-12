@@ -7,4 +7,10 @@
 <div>
   <%= link_to "ルールの削除",  rule_path, method: :delete, class: "post" %>
 </div>
-<%= @rule.content %>
+<% if current_house.id == @rule.house_id %>
+    投稿者<br>
+    <%= @rule.user_name %><br>
+    タイトル<br>
+    <%= @rule.title %><br>
+    内容<%= simple_format (@rule.content) %>
+<% end %>

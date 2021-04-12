@@ -4,9 +4,18 @@
 <div>
   <%= link_to "ルールの作成",  new_rule_path, class: "post" %>
 </div>
+<br>
 <% @rules.each do |rule| %>
-  <%= rule.content %> 
-  <%= link_to rule_path(rule.id) do %>
-    詳細
+  <% if current_house.id == rule.house_id %>
+    投稿者<br>
+    <%= rule.user_name %><br>
+    タイトル<br>
+    <%= rule.title %><br>
+    内容<br>
+    <%=safe_join(rule.content.split("\n"),tag(:br)) %>
+    <br>
+    <%= link_to rule_path(rule.id) do %>
+      編集・削除<br>
+    <% end %>
   <% end %>
 <% end %>

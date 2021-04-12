@@ -2,12 +2,10 @@
   <div class="container">
     <h3>ユーザー登録</h3>
     <%= form_with(model: @user, local: true) do |form| %>
-      <p>
-        写真を選択
-      </p>
-      <%= form.file_field :image, id:"item-image" %>
-      <%= form.text_field :user_name, placeholder: "User_name" %>
-      <%= form.text_field :birthday, placeholder: "Birthday" %>
+    <%= render 'layouts/error_messages', model: form.object %>
+      <%= form.file_field :image, id:"item-image" %><br>
+      <%= form.text_field :user_name, placeholder: "User_name" %><br>
+      <%= form.text_field :birthday, placeholder: "Birthday" %><br>
       <%= form.submit "SEND" %>
     <% end %>
   </div>
