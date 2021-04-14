@@ -1,0 +1,14 @@
+<div>
+  <%= link_to "家事分担に戻る",  works_path, class: "post" %>
+</div>
+<div class="contents row">
+  <div class="container">
+    <h3>担当家事を登録する</h3>
+    <%= form_with(model: @work, local: true) do |form| %>
+    <%= render 'layouts/error_messages', model: form.object %>
+      <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "住民を選択" %><br>
+      <%= form.text_field :work_name, placeholder: "work_name" %><br>
+      <%= form.submit "SEND" %>
+    <% end %>
+  </div>
+</div>
