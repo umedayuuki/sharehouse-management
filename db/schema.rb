@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_132745) do
+ActiveRecord::Schema.define(version: 2021_04_14_135528) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 2021_04_14_132745) do
     t.index ["house_id"], name: "index_rules_on_house_id"
   end
 
+  create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "day", null: false
+    t.string "event", null: false
+    t.string "user_name", null: false
+    t.bigint "house_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["house_id"], name: "index_schedules_on_house_id"
+  end
+
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "list", null: false
     t.string "limit", null: false
@@ -96,6 +106,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_132745) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "money", "houses"
   add_foreign_key "rules", "houses"
+  add_foreign_key "schedules", "houses"
   add_foreign_key "todos", "houses"
   add_foreign_key "users", "houses"
   add_foreign_key "works", "houses"

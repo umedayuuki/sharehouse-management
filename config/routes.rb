@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :money
   resources :works
   resources :todos
+  resources :schedules
 end
