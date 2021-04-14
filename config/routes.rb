@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :rules
   resources :money
   resources :works
+  resources :todos
 end
