@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "pages#toppage"
   resources :users
   resources :rules
+  resources :money
 end

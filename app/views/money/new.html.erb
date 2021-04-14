@@ -1,15 +1,14 @@
-
 <div>
-  <%= link_to "ルールに戻る",  rules_path, class: "post" %>
+  <%= link_to "支出画面に戻る",  money_index_path, class: "post" %>
 </div>
 <div class="contents row">
   <div class="container">
-    <h3>ルールを作成する</h3>
-    <%= form_with(model: @rule, local: true) do |form| %>
+    <h3>支出を登録する</h3>
+    <%= form_with(model: @money, local: true) do |form| %>
     <%= render 'layouts/error_messages', model: form.object %>
       <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "住民を選択" %><br>
-      <%= form.text_field :title, placeholder: "title" %><br>
-      <%= form.text_area :content, placeholder: "text", rows: "10" %><br>
+      <%= form.text_field :item_name, placeholder: "item_name" %><br>
+      <%= form.text_field :price, placeholder: "price" %><br>
       <%= form.submit "SEND" %>
     <% end %>
   </div>

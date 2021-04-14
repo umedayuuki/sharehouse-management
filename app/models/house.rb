@@ -7,7 +7,7 @@ class House < ApplicationRecord
   has_many :users
   has_many :chats
   has_many :rules
-  has_many :moneys
+  has_many :money
   has_many :works
   has_many :schedules
   has_many :todos

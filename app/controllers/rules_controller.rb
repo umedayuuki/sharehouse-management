@@ -7,7 +7,7 @@ class RulesController < ApplicationController
 
   def new
     @rule = Rule.new
-    @users = User.all
+    @users = User.where(house_id: current_house.id)
   end
 
   def create
@@ -16,6 +16,7 @@ class RulesController < ApplicationController
     if @rule.save
       redirect_to rules_path
     else
+      @users = User.where(house_id: current_house.id)
       render :new
     end
   end
@@ -26,11 +27,10 @@ class RulesController < ApplicationController
 
   def edit
     @rule = Rule.find(params[:id])
-    @users = User.all
+    @users = User.where(house_id: current_house.id)
   end
 
   def update
-    @users = User.all
     rule = Rule.find(params[:id])
     rule.update(rule_params)
   end
@@ -45,4 +45,5 @@ class RulesController < ApplicationController
   def rule_params
     params.require(:rule).permit(:title, :content, :user_name).merge(house_id: current_house.id)
   end
+
 end

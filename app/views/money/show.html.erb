@@ -1,0 +1,16 @@
+<div>
+  <%= link_to "支出管理へ戻る",  money_index_path, class: "post" %>
+</div>
+<div>
+  <%= link_to "支出の編集",  edit_money_path, class: "post" %>
+</div>
+<div>
+  <%= link_to "支出の削除",  money_path, method: :delete, class: "post" %>
+</div>
+<% if current_house.id == @money.house_id %>
+    投稿者<br>
+    <%= @money.user_name %><br>
+    アイテム名<br>
+    <%= @money.item_name %><br>
+    金額<%= @money.price %>
+<% end %>

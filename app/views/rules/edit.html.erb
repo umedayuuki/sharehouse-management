@@ -1,8 +1,15 @@
 <div>
   <%= link_to "ルールへ戻る",  rules_path, class: "post" %>
 </div>
-<h3>編集する</h3>
-<%= form_with(model: @rule, local: true) do |form| %>
-      <%= form.text_area :content, placeholder: "content", rows: "10" %>
+<div class="contents row">
+  <div class="container">
+    <h3>ルールを作成する</h3>
+    <%= form_with(model: @rule, local: true) do |form| %>
+    <%= render 'layouts/error_messages', model: form.object %>
+      <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "住民を選択" %><br>
+      <%= form.text_field :title, placeholder: "title" %><br>
+      <%= form.text_area :content, placeholder: "text", rows: "10" %><br>
       <%= form.submit "SEND" %>
-<% end %>
+    <% end %>
+  </div>
+</div>

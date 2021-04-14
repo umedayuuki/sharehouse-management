@@ -30,12 +30,6 @@ ER図
 
 ### Association
 
-- has_many  :chats
-- has_many  :rules
-- has_many  :moneys
-- has_many  :works
-- has_many  :schedules
-- has_many  :todos
 - belongs_to :house
 
 ## houses テーブル
@@ -51,50 +45,47 @@ ER図
 - has_many :users
 - has_many :chats
 - has_many :rules
-- has_many :moneys
+- has_many :money
 - has_many :works
 - has_many :schedules
 - has_many :todos
 
 ## rules テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | text       | null: false                    |
-| user    | references | null: false, foreign_key: true |
-| house   | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| content   | text       | null: false                    |
+| user_name | string     | null: false                    |
+| house     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :house
 
-## moneys テーブル
+## money テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | item_name | string     | null: false                    |
 | price     | integer    | null: false                    |
-| user      | references | null: false, foreign_key: true |
+| user_name | string     | null: false                    |
 | house     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :house
 
 ## todos テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| todo_name | string     | null: false                    |
+| list      | string     | null: false                    |
 | limit     | string     | null: false                    |
-| user      | references | null: false, foreign_key: true |
+| user_name | string     | null: false                    |
 | house     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :house
 
 ## works テーブル
@@ -102,37 +93,34 @@ ER図
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | work_name | string     | null: false                    |
-| user      | references | null: false, foreign_key: true |
+| user_name | string     | null: false                    |
 | house     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :house
 
 ## schedules テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| day    | string     | null: false                    |
-| event  | string     | null: false                    |
-| user   | references | null: false, foreign_key: true |
-| house  | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| day       | date       | null: false                    |
+| event     | string     | null: false                    |
+| user_name | string     | null: false                    |
+| house     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :house
 
 ## chats テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| text   | string     | null: false                    |
-| user   | references | null: false, foreign_key: true |
-| house  | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| talk      | string     | null: false                    |
+| user_name | string     | null: false                    |
+| house     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :house

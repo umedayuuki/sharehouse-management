@@ -1,0 +1,21 @@
+<div>
+<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
+</div>
+<div>
+  <%= link_to "支出の登録",  new_money_path, class: "post" %>
+</div>
+<br>
+<% @money.each do |money| %>
+  <% if current_house.id == money.house_id %>
+    投稿者<br>
+    <%= money.user_name %><br>
+    アイテム名<br>
+    <%= money.item_name %><br>
+    金額<br>
+    <%= money.price %>円<br>
+    <br>
+    <%= link_to money_path(money.id) do %>
+      編集・削除<br>
+    <% end %>
+  <% end %>
+<% end %>
