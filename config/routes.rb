@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :works
   resources :todos
   resources :schedules
+  resources :chats
 end

@@ -1,0 +1,19 @@
+<div>
+  <%= link_to "ルームへ戻る",  chats_path, class: "post" %>
+</div>
+<div>
+  <%= link_to "チャットの編集",  edit_chat_path, class: "post" %>
+</div>
+<div>
+  <%= link_to "チャットの削除",  chat_path, method: :delete, class: "post" %>
+</div>
+<% if current_house.id == @chat.house_id %>
+    投稿者<br>
+    <%= @chat.user_name %><br>
+    内容<br>
+    <%= @chat.talk %><br>
+    <% if @chat.image.present? %>
+      画像<br>
+      <%= image_tag @chat.image %><br>
+    <% end %>
+<% end %>

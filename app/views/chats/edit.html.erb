@@ -1,0 +1,12 @@
+<div class="contents row">
+  <div class="container">
+    <h3>リストを編集する</h3>
+    <%= form_with(model: @chat, local: true) do |form| %>
+    <%= render 'layouts/error_messages', model: form.object %>
+      <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "住民を選択" %><br>
+      <%= form.file_field :image, id:"item-image" %><br>
+      <%= form.text_field :talk, placeholder: "day" %><br>
+      <%= form.submit "SEND" %>
+    <% end %>
+  </div>
+</div>
