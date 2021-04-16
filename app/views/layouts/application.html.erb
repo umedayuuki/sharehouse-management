@@ -7,29 +7,43 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+    .container{
+      background-color: #ffeddc;
+    }
+    .card{
+      background-color: #f5f5f5;
+    }
+    a{
+      color: black;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+    </style>
   </head>
 
   <body>
-    <header class="header">
-      <div class="header__bar row">
-        <h1 class="grid-6"><a href="/">シェアハウス管理アプリ</a></h1>
-        <% if house_signed_in? %>
-              <%= current_house.house_name %>でログイン中
-              <%= link_to "ログアウト", destroy_house_session_path, method: :delete %>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="title col-8">
+            <h4 class="m-3 p-2"><a href="/">シェアハウス管理アプリ</h4>
           </div>
-       <% else %>
-          <div class="grid-6">
-            <%= link_to "新規登録", new_house_registration_path, class: "post" %>
-            <%= link_to "ログイン", new_house_session_path, class: "post" %>
+          <div class="devise col-4">
+            <% if house_signed_in? %>
+              <h6 class="m-3 p-3"><%= current_house.house_name %>
+                 <%= link_to "ログアウト", destroy_house_session_path, method: :delete %></h6>
+            <% else %>
+              <h6 class="m-3 p-3"><%= link_to "新規登録", new_house_registration_path %>
+                 <%= link_to "ログイン", new_house_session_path %></h6>
+            <% end %>
           </div>
-       <% end %>
+        </div>
       </div>
     </header>
     <%= yield %>
     <footer>
-      <p>
-        Sharehouse-Management 2021
-      </p>
     </footer>
   </body>
 </html>

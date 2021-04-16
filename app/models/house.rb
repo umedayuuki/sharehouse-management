@@ -16,9 +16,6 @@ class House < ApplicationRecord
     validates :house_name
     validates :address
   end
-
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
   
   def email_required?
     false
