@@ -1,5 +1,17 @@
-<div class="card col-sm-6 mx-auto mt-5 mb-5">
-  <div class="card-body mx-auto">
+<section class="pt-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">シェアハウス管理アプリへようこそ</h3>
+      <p class="lead text-muted">共同生活に必要な機能を使用できます。</p>
+      <p>
+        <a href="/houses/sign_up" class="btn btn-outline-info my-2">新規登録</a>
+        <a href="/houses/sign_in" class="btn btn-outline-secondary my-2">ログイン</a>
+      </p>
+    </div>
+  </div>
+</section>
+<div class="card col-sm-6 mx-auto mb-5">
+  <div class="card-body text-center mx-auto">
     <h4 class="mt-1 mb-3">ログイン</h4><br>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

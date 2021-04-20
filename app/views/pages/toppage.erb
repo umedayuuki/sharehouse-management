@@ -1,22 +1,80 @@
-<h2>シェアハウス管理メニュー</h2>
-<div>
-<h3><%= link_to "住民登録機能", users_path, class: "post" %><h3>
-</div>
-<div>
-<h3><%= link_to "ルール機能", rules_path, class: "post" %><h3>
-</div>
-<div>
-<h3><%= link_to "支出管理機能", money_index_path, class: "post" %></h3>
-</div>
-<div>
-<h3><%= link_to "家事分担機能", works_path, class: "post" %></h3>
-</div>
-<div>
-<h3><%= link_to "TODOリスト", todos_path, class: "post" %></h3>
-</div>
-<div>
-<h3><%= link_to "スケジュール表", schedules_path, class: "post" %></h3>
-</div>
-<div>
-<h3><%= link_to "チャットルーム", chats_path, class: "post" %></h3>
-</div>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">メニュー</h3>
+      <p class="lead text-muted">シェアハウスを新規登録またはログインされた新たな住民の方は最初に住民登録を行ってください。ルームメイトから住民登録を行うと他の機能で登録した住民が選択できるようになります。</p>
+    </div>
+  </div>
+</section>
+<main>
+  <div class="menu text-center ">
+    <div class="container">
+      <div class="row row-cols-2 row-cols-md-4">
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("house.jpeg", class:"top-logo"), edit_house_registration_path(current_house) %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "シェアハウス", edit_house_registration_path(current_house), class: "post" %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("user.jpg", class: "top-logo"), users_path %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "ルームメイト", users_path, class: "post" %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("chat.jpeg", class: "top-logo"), chats_path %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "チャット", chats_path, class: "post" %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("schedule.jpg", class:"top-logo"), schedules_path %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "スケジュール", schedules_path, class: "post" %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("rule.jpg", class: "top-logo"), rules_path %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "ルール", rules_path, class: "post" %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("list.jpg", class: "top-logo"), todos_path %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "TODO", todos_path, class: "post" %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("money.jpg", class:"top-logo"), money_index_path %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "マネー", money_index_path, class: "post" %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag("work.jpg", class: "top-logo"), works_path %>
+            <div class="card-body">
+              <p class="card-text"><%= link_to "ワーク", works_path, class: "post" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

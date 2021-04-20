@@ -2,22 +2,17 @@
 <%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
 </div>
 <div>
-  <%= link_to "スケシュールの登録",  new_chat_path, class: "post" %>
+  <%= link_to "チャットを投稿する",  new_chat_path, class: "post" %>
 </div>
 <br>
 <% @chats.each do |chat| %>
   <% if current_house.id == chat.house_id %>
-    投稿者<br>
-    <%= chat.user_name %><br>
-    内容<br>
-    <%= chat.talk %><br>
+    <%= chat.user_name %><%= chat.talk %><br>
     <% if chat.image.present? %>
-      画像<br>
       <%= image_tag chat.image %><br>
     <% end %>
-    <br>
     <%= link_to chat_path(chat.id) do %>
-      編集・削除<br>
+      編集<br>
     <% end %>
   <% end %>
 <% end %>

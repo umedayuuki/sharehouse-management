@@ -1,18 +1,31 @@
-<h2>プロフィール</h2>
-
-<div>
-  <%= link_to "一覧へ戻る",  users_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "編集", edit_user_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "削除", user_path, method: :delete, class: "post" %>
-</div>
-<% if current_house.id == @user.house_id %>
-  名前<br>
-  <%= @user.user_name %><br>
-  誕生日<br>
-  <%= @user.birthday %><br>
-<%= image_tag @user.image %>
-<% end %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">ルームメイト詳細</h3>
+      <p class="lead text-muted">ルームメイトの編集・削除が可能です。</p>
+      <p>
+        <%= link_to "編集", edit_user_path, class: "btn btn-outline-success my-2" %>
+        <%= link_to "削除", user_path, method: :delete, class: "btn btn-outline-danger my-2" %>
+        <%= link_to "一覧に戻る", users_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<main>
+  <div class="card col-sm-10 mx-auto mb-5">
+    <div class="card-body text-center mx-auto">
+      <% if current_house.id == @user.house_id %>
+        <div class="col my-5">
+          <div class="card shadow-sm">
+            <%= link_to image_tag(@user.image, class:"user-logo") %>
+            <div class="card-body">
+              <h4 class="card-text">
+                『名前』<%= @user.user_name %><br>
+                『誕生日』<%= @user.birthday %>
+              </h4>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</main>

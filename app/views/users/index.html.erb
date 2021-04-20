@@ -1,17 +1,33 @@
-<% if house_signed_in? %>
-  <h2><%= current_house.house_name %>の住民一覧</h2>
-<% end %>
-<div>
-<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
-</div>
-<div>
-<%= link_to "住民を登録する",  new_user_path, class: "post" %>
-</div>
-  <% @users.each do |user| %>
-    <% if current_house.id == user.house_id %>
-      <%= link_to user_path(user.id) do %>
-        <%= user.user_name %>
-        <%= image_tag user.image %>
-      <% end %>
-   <% end %>
-  <% end %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">ルームメイト一覧</h3>
+      <p class="lead text-muted">ルームメイトをクリックすると詳細画面へ移動します。</p>
+      <p>
+        <%= link_to "住民を登録する", new_user_path, class: "btn btn-outline-info my-2" %>
+        <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<main>
+  <div class="menu text-center ">
+    <div class="container">
+      <div class="row row-cols-2 row-cols-md-3">
+        <% @users.each do |user| %>
+          <% if current_house.id == user.house_id %>
+            <div class="col mb-5">
+              <div class="card shadow-sm">
+                <%= link_to image_tag(user.image, class:"user-logos"), user_path(user.id) %>
+                <div class="card-body">
+                  <p class="card-text"><%= link_to user.user_name, user_path(user.id), class: "post" %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
