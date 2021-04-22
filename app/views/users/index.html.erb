@@ -18,7 +18,7 @@
           <% if current_house.id == user.house_id %>
             <div class="col mb-5">
               <div class="card shadow-sm">
-                <%= link_to image_tag(user.image, class:"user-logos"), user_path(user.id) %>
+                <%= link_to image_tag(user.image, class:"users-logo"), user_path(user.id) %>
                 <div class="card-body">
                   <p class="card-text"><%= link_to user.user_name, user_path(user.id), class: "post" %></p>
                 </div>

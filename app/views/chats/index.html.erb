@@ -1,18 +1,73 @@
-<div>
-<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "チャットを投稿する",  new_chat_path, class: "post" %>
-</div>
-<br>
-<% @chats.each do |chat| %>
-  <% if current_house.id == chat.house_id %>
-    <%= chat.user_name %><%= chat.talk %><br>
-    <% if chat.image.present? %>
-      <%= image_tag chat.image %><br>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">チャットルーム</h3>
+      <p class="lead text-muted">チャットの投稿が可能です。クリックすると詳細画面へ移動します。</p>
+      <p>
+        <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<div class="card col-sm-6 mx-auto mb-5">
+  <div class="card-body text-center mx-auto">
+    <h4 class="mt-1 mb-3">チャット</h4><br>
+    <%= form_with(model: @chat, local: true) do |form| %>
+    <%= render 'layouts/error_messages', model: form.object %>
+      <div class="form-group">
+        <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "投稿者を選択" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :talk %>
+      </div>
+      <div class="form-group">
+        <%= form.file_field :image, id:"item-image" %>
+      </div>
+      <div class="actions">
+        <%= form.submit "投稿", id: "submit", :class => "btn btn-sm btn-outline-dark disabled" %>
+      </div>
     <% end %>
-    <%= link_to chat_path(chat.id) do %>
-      編集<br>
+  </div>
+</div>
+<div class="table-responsive table-hover table-borderless col-9 mx-auto text-center">
+  <table class="table ">
+    <thead>
+      <tr>
+        <th>投稿者</th>
+        <th>内容</th>
+        <th>投稿日</th>
+        <th>画像</th>
+      </tr>
+    </thead>
+    <% @chats.each do |chat| %>
+      <% if current_house.id == chat.house_id %>
+        <tbody>
+          <tr>
+              <td>
+                <%= link_to chat_path(chat.id) do %>
+                  <%= chat.user_name %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to chat_path(chat.id) do %>
+                  <%= chat.talk %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to chat_path(chat.id) do %>
+                  <%= chat.created_at.to_s(:datetime_jp) %>
+                <% end %>
+              </td>
+              <% if chat.image.present? %>
+                <td>
+                  <%= link_to chat_path(chat.id) do %>
+                    <%= image_tag chat.image, class:"chats-logos" %>
+                   <% end %>
+                </td>
+              <% end %>
+          </tr>
+        </tbody>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </table>
+</div>

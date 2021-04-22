@@ -2,22 +2,19 @@ class ChatsController < ApplicationController
   before_action :authenticate_house!
 
   def index
-    @chats = Chat.all
-  end
-
-  def new
     @chat = Chat.new
+    @chats = Chat.all.order(id: "DESC")
     @users = User.where(house_id: current_house.id)
   end
 
   def create
-    @users = User.all
     @chat = Chat.new(chat_params)
     if @chat.save
-      redirect_to chats_path
+      redirect_to action: :index
     else
+      @chats = Chat.all.order(id: "DESC")
       @users = User.where(house_id: current_house.id)
-      render :new
+      render :index
     end
   end
 
@@ -31,13 +28,19 @@ class ChatsController < ApplicationController
   end
 
   def update
-    chat = Chat.find(params[:id])
-    chat.update(chat_params)
+    @chat = Chat.find(params[:id])
+    if @chat.update(chat_params)
+       redirect_to chat_path(@chat)
+    else
+      @users = User.where(house_id: current_house.id)
+      render :edit
+    end
   end
 
   def destroy
-    chat = Chat.find(params[:id])
-    chat.destroy
+    @chat = Chat.find(params[:id])
+    @chat.destroy
+    redirect_to chats_path
   end
 
   private
