@@ -1,21 +1,65 @@
-<div>
-<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "リストの登録",  new_todo_path, class: "post" %>
-</div>
-<br>
-<% @todos.each do |todo| %>
-  <% if current_house.id == todo.house_id %>
-    投稿者<br>
-    <%= todo.user_name %><br>
-    TODO<br>
-    <%= todo.list %><br>
-    期限<br>
-    <%= todo.limit %><br>
-    <br>
-    <%= link_to todo_path(todo.id) do %>
-      編集・削除<br>
+<section class="pt-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">TODOリスト</h3>
+      <p class="lead text-muted">TODOの登録が可能です。クリックすると詳細画面へ移動します。</p>
+      <p>
+        <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<div class="card col-sm-6 mx-auto mb-5">
+  <div class="card-body text-center mx-auto">
+    <h4 class="mt-1 mb-3">TODO</h4><br>
+    <%= form_with(model: @todo, local: true) do |form| %>
+    <%= render 'layouts/error_messages', model: form.object %>
+      <div class="form-group">
+        <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "投稿者を選択" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :list, placeholder: "やること"%>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :limit, placeholder: "いつまで"%>
+      </div>
+      <div class="actions">
+        <%= form.submit "登録", id: "submit", :class => "btn btn-sm btn-outline-dark disabled" %>
+      </div>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+</div>
+<div class="card col-11 mx-auto mb-5">
+  <div class="table-responsive table-hover table-borderless col-9 mx-auto text-center">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>投稿者</th>
+          <th>やること</th>
+          <th>いつまで</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <% @todos.each do |todo| %>
+        <% if current_house.id == todo.house_id %>
+          <tbody>
+            <tr>
+                <td>
+                    <%= todo.user_name %>
+                </td>
+                <td>
+                    <%= todo.list %>
+                </td>
+                <td>
+                    <%= todo.limit %>
+                </td>
+                <td>
+                  <%= link_to "詳細", todo_path(todo.id), class: "btn btn-outline-secondary btn-sm" %>
+                </td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,12 +1,31 @@
-<div class="contents row">
-  <div class="container">
-    <h3>リストを編集する</h3>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">TODO編集</h3>
+      <p class="lead text-muted">TODOの編集が可能です。</p>
+      <p>
+        <%= link_to "詳細に戻る", todo_path(@todo.id), class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<div class="card col-sm-6 mx-auto mb-5">
+  <div class="card-body text-center mx-auto">
+    <h4 class="mt-1 mb-3">編集</h4><br>
     <%= form_with(model: @todo, local: true) do |form| %>
     <%= render 'layouts/error_messages', model: form.object %>
-      <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "住民を選択" %><br>
-      <%= form.text_field :list, placeholder: "list" %><br>
-      <%= form.text_field :limit, placeholder: "limit" %><br>
-      <%= form.submit "SEND" %>
+      <div class="form-group">
+        <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "投稿者を選択" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :list, placeholder: "やること"%>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :limit, placeholder: "いつまで"%>
+      </div>
+      <div class="actions">
+        <%= form.submit "変更", id: "submit", :class => "btn btn-sm btn-outline-dark disabled" %>
+      </div>
     <% end %>
   </div>
 </div>

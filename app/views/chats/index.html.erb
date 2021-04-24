@@ -37,6 +37,7 @@
           <th>投稿者</th>
           <th>内容</th>
           <th>投稿日</th>
+          <th>詳細</th>
           <th>画像</th>
         </tr>
       </thead>
@@ -45,25 +46,20 @@
           <tbody>
             <tr>
                 <td>
-                  <%= link_to chat_path(chat.id) do %>
-                    <%= chat.user_name %>
-                  <% end %>
+                  <%= chat.user_name %>
                 </td>
                 <td>
-                  <%= link_to chat_path(chat.id) do %>
-                    <%= chat.talk %>
-                  <% end %>
+                  <%= chat.talk %>
                 </td>
                 <td>
-                  <%= link_to chat_path(chat.id) do %>
-                    <%= chat.created_at.to_s(:datetime_jp) %>
-                  <% end %>
+                  <%= chat.created_at.to_s(:datetime_jp) %>
+                </td>
+                <td>
+                  <%= link_to "詳細", chat_path(chat.id), class: "btn btn-outline-secondary btn-sm" %>
                 </td>
                 <% if chat.image.present? %>
                   <td>
-                    <%= link_to chat_path(chat.id) do %>
                       <%= image_tag chat.image, class:"chats-logos" %>
-                    <% end %>
                   </td>
                 <% end %>
             </tr>

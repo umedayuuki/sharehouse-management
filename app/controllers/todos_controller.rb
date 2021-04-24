@@ -2,22 +2,19 @@ class TodosController < ApplicationController
   before_action :authenticate_house!
 
   def index
-    @todos = Todo.all
-  end
-
-  def new
-    @todo = Todo.new
+    @todo =  Todo.new
+    @todos = Todo.all.order(id: "DESC")
     @users = User.where(house_id: current_house.id)
   end
 
   def create
-    @users = User.all
     @todo = Todo.new(todo_params)
     if @todo.save
-      redirect_to todos_path
+      redirect_to action: :index
     else
+      @todos = Todo.all.order(id: "DESC")
       @users = User.where(house_id: current_house.id)
-      render :new
+      render :index
     end
   end
 
@@ -31,13 +28,19 @@ class TodosController < ApplicationController
   end
 
   def update
-    todo = Todo.find(params[:id])
-    todo.update(todo_params)
+    @todo = Todo.find(params[:id])
+    if @todo.update(todo_params)
+       redirect_to todo_path(@todo)
+    else
+      @users = User.where(house_id: current_house.id)
+      render :edit
+    end
   end
 
   def destroy
-    todo = Todo.find(params[:id])
-    todo.destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    redirect_to todos_path
   end
 
   private
