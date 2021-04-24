@@ -1,15 +1,31 @@
-<div>
-  <%= link_to "ルールへ戻る",  rules_path, class: "post" %>
-</div>
-<div class="contents row">
-  <div class="container">
-    <h3>ルールを作成する</h3>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">ルール編集</h3>
+      <p class="lead text-muted">ルールの編集が可能です。</p>
+      <p>
+        <%= link_to "詳細に戻る", rule_path(@rule.id), class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<div class="card col-sm-6 mx-auto mb-5">
+  <div class="card-body text-center mx-auto">
+    <h4 class="mt-1 mb-3">編集</h4><br>
     <%= form_with(model: @rule, local: true) do |form| %>
-    <%= render 'layouts/error_messages', model: form.object %>
-      <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "住民を選択" %><br>
-      <%= form.text_field :title, placeholder: "title" %><br>
-      <%= form.text_area :content, placeholder: "text", rows: "10" %><br>
-      <%= form.submit "SEND" %>
+     <%= render 'layouts/error_messages', model: form.object %>
+      <div class="form-group">
+        <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "住民を選択" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :title, placeholder: "タイトル" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_area :content, rows: "10" %>
+      </div>
+      <div class="actions">
+        <%= form.submit "変更", :class => "btn btn-sm btn-outline-dark disabled" %>
+      </div>
     <% end %>
   </div>
 </div>

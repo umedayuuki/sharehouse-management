@@ -1,21 +1,32 @@
-<div>
-<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "ルールの作成",  new_rule_path, class: "post" %>
-</div>
-<br>
-<% @rules.each do |rule| %>
-  <% if current_house.id == rule.house_id %>
-    投稿者<br>
-    <%= rule.user_name %><br>
-    タイトル<br>
-    <%= rule.title %><br>
-    内容<br>
-    <%=safe_join(rule.content.split("\n"),tag(:br)) %>
-    <br>
-    <%= link_to rule_path(rule.id) do %>
-      編集・削除<br>
-    <% end %>
-  <% end %>
-<% end %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">ルール一覧</h3>
+      <p class="lead text-muted">共同生活を行う上でルールは必ず守りましょう。</p>
+      <p>
+        <%= link_to "ルールを登録する", new_rule_path, class: "btn btn-outline-info my-2" %>
+        <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<main>
+  <div class="container text-center">
+    <div class="row row-cols-2 row-cols-md-3">
+      <% @rules.each do |rule| %>
+        <% if current_house.id == rule.house_id %>
+          <div class="col-md-4">
+            <div class="border mb-4 shadow-sm">
+              <div class="col p-4 flex-column">
+                <strong class="d-inline-block mb-2 text-secondary">作成者:<%= rule.user_name %></strong>
+                <h4 class="mt-2"><%= rule.title %></h4>
+                <br>
+                <%= link_to "詳細確認", rule_path(rule.id), class: "btn btn-outline-secondary btn-sm" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</main>

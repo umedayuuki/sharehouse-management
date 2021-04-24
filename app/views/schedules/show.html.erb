@@ -12,16 +12,16 @@
   </div>
 </section>
 <main>
-  <div class="card col-sm-10 mx-auto mb-5">
+  <div class="card col-sm-8 mx-auto mb-5">
     <div class="card-body text-center mx-auto">
       <% if current_house.id == @schedule.house_id %>
         <div class="col my-5">
           <div class="card shadow-sm">
             <div class="card-body">
               <h4 class="card-text">
-                『投稿者』<%= @schedule.user_name %><br>
-                『イベント』<%= @schedule.event %><br>
-                『日時』<%= @schedule.start_time %><br>
+                投稿者:<%= @schedule.user_name %><br>
+                イベント:<%= @schedule.event %><br>
+                日時:<%= @schedule.start_time %><br>
               </h4>
             </div>
           </div>

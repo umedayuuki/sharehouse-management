@@ -1,16 +1,34 @@
-<div>
-  <%= link_to "ルールへ戻る",  rules_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "ルールの編集",  edit_rule_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "ルールの削除",  rule_path, method: :delete, class: "post" %>
-</div>
-<% if current_house.id == @rule.house_id %>
-    投稿者<br>
-    <%= @rule.user_name %><br>
-    タイトル<br>
-    <%= @rule.title %><br>
-    内容<%= simple_format (@rule.content) %>
-<% end %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">ルール詳細</h3>
+      <p class="lead text-muted">ルールの詳細確認・編集・削除が可能です。</p>
+      <p>
+        <%= link_to "編集", edit_rule_path, class: "btn btn-outline-success my-2" %>
+        <%= link_to "削除", rule_path, method: :delete, class: "btn btn-outline-danger my-2" %>
+        <%= link_to "一覧に戻る", rules_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<main>
+  <div class="card col-sm-10 mx-auto mb-5">
+    <div class="card-body text-center mx-auto">
+      <% if current_house.id == @rule.house_id %>
+        <div class="col my-5">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-text">
+                投稿者:<%= @rule.user_name %><br>
+                <br>
+                タイトル:<%= @rule.title %><br>
+                <br>
+                内容<br>
+                <%= simple_format (@rule.content) %>
+              </h4>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</main>

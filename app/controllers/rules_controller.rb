@@ -31,13 +31,19 @@ class RulesController < ApplicationController
   end
 
   def update
-    rule = Rule.find(params[:id])
-    rule.update(rule_params)
+    @rule = Rule.find(params[:id])
+    if @rule.update(rule_params)
+      redirect_to rule_path(@rule)
+    else
+      @users = User.where(house_id: current_house.id)
+      render :edit
+    end
   end
 
   def destroy
     rule = Rule.find(params[:id])
     rule.destroy
+    redirect_to rules_path
   end
 
   private
