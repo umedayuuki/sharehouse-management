@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_142321) do
   end
 
   create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "day", null: false
+    t.datetime "start_time", null: false
     t.string "event", null: false
     t.string "user_name", null: false
     t.bigint "house_id"

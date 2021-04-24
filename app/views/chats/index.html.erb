@@ -1,4 +1,4 @@
-<section class="py-5 text-center container">
+<section class="pt-5 text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h3 class="fw-light">チャットルーム</h3>
@@ -29,45 +29,47 @@
     <% end %>
   </div>
 </div>
-<div class="table-responsive table-hover table-borderless col-9 mx-auto text-center">
-  <table class="table ">
-    <thead>
-      <tr>
-        <th>投稿者</th>
-        <th>内容</th>
-        <th>投稿日</th>
-        <th>画像</th>
-      </tr>
-    </thead>
-    <% @chats.each do |chat| %>
-      <% if current_house.id == chat.house_id %>
-        <tbody>
-          <tr>
-              <td>
-                <%= link_to chat_path(chat.id) do %>
-                  <%= chat.user_name %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to chat_path(chat.id) do %>
-                  <%= chat.talk %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to chat_path(chat.id) do %>
-                  <%= chat.created_at.to_s(:datetime_jp) %>
-                <% end %>
-              </td>
-              <% if chat.image.present? %>
+<div class="card col-11 mx-auto mb-5">
+  <div class="table-responsive table-hover table-borderless col-9 mx-auto text-center">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>投稿者</th>
+          <th>内容</th>
+          <th>投稿日</th>
+          <th>画像</th>
+        </tr>
+      </thead>
+      <% @chats.each do |chat| %>
+        <% if current_house.id == chat.house_id %>
+          <tbody>
+            <tr>
                 <td>
                   <%= link_to chat_path(chat.id) do %>
-                    <%= image_tag chat.image, class:"chats-logos" %>
-                   <% end %>
+                    <%= chat.user_name %>
+                  <% end %>
                 </td>
-              <% end %>
-          </tr>
-        </tbody>
+                <td>
+                  <%= link_to chat_path(chat.id) do %>
+                    <%= chat.talk %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to chat_path(chat.id) do %>
+                    <%= chat.created_at.to_s(:datetime_jp) %>
+                  <% end %>
+                </td>
+                <% if chat.image.present? %>
+                  <td>
+                    <%= link_to chat_path(chat.id) do %>
+                      <%= image_tag chat.image, class:"chats-logos" %>
+                    <% end %>
+                  </td>
+                <% end %>
+            </tr>
+          </tbody>
+        <% end %>
       <% end %>
-    <% end %>
-  </table>
+    </table>
+  </div>
 </div>

@@ -1,21 +1,44 @@
-<div>
-<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
+<section class="pt-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">カレンダー</h3>
+      <p class="lead text-muted">スケジュールの投稿が可能です。クリックすると詳細画面へ移動します。</p>
+      <p>
+        <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<div class="card col-sm-6 mx-auto mb-5">
+  <div class="card-body text-center mx-auto">
+    <h4 class="mt-1 mb-3">スケジュール</h4><br>
+    <%= form_with(model: @schedule, local: true) do |form| %>
+     <%= render 'layouts/error_messages', model: form.object %>
+      <div class="form-group">
+        <%= form.select :user_name, @users.map{ |user| user.user_name }, include_blank: "投稿者を選択" %>
+      </div>
+      <div class="form-group">
+        <%= form.datetime_select :start_time %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :event %>
+      </div>
+      <div class="actions">
+        <%= form.submit "追加", :class => "btn btn-sm btn-outline-dark disabled" %>
+      </div>
+    <% end %>
+  </div>
 </div>
-<div>
-  <%= link_to "スケシュールの登録",  new_schedule_path, class: "post" %>
-</div>
-<br>
-<% @schedules.each do |schedule| %>
-  <% if current_house.id == schedule.house_id %>
-    投稿者<br>
-    <%= schedule.user_name %><br>
-    TODO<br>
-    <%= schedule.day %><br>
-    期限<br>
-    <%= schedule.event %><br>
-    <br>
-    <%= link_to schedule_path(schedule.id) do %>
-      編集・削除<br>
+<div class="card col-11 mx-auto mb-5">
+  <%= month_calendar events: @schedules do |date, schedules| %>
+    <%= date.day %>
+    <% schedules.each do |schedule| %>
+      <div>
+        <%= link_to schedule_path(schedule.id) do %>
+            【<%= schedule.user_name %>】
+            <%= schedule.event %>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
-<% end %>
+</div>

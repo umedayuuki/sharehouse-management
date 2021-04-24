@@ -2,22 +2,19 @@ class SchedulesController < ApplicationController
   before_action :authenticate_house!
 
   def index
-    @schedules = Schedule.all
-  end
-
-  def new
     @schedule = Schedule.new
+    @schedules = Schedule.all
     @users = User.where(house_id: current_house.id)
   end
 
   def create
-    @users = User.all
     @schedule = Schedule.new(schedule_params)
     if @schedule.save
-      redirect_to schedules_path
+      redirect_to action: :index
     else
+      @schedules = Schedule.all
       @users = User.where(house_id: current_house.id)
-      render :new
+      render :index
     end
   end
 
@@ -31,18 +28,24 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    schedule = Schedule.find(params[:id])
-    schedule.update(schedule_params)
+    @schedule = Schedule.find(params[:id])
+    if @schedule.update(schedule_params)
+       redirect_to schedule_path(@schedule)
+    else
+      @users = User.where(house_id: current_house.id)
+      render :edit
+    end
   end
 
   def destroy
     schedule = Schedule.find(params[:id])
     schedule.destroy
+    redirect_to schedules_path
   end
 
   private
   
   def schedule_params
-    params.require(:schedule).permit(:day, :event, :user_name).merge(house_id: current_house.id)
+    params.require(:schedule).permit(:start_time, :event, :user_name).merge(house_id: current_house.id)
   end
 end
