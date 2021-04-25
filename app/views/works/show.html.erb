@@ -1,15 +1,31 @@
-<div>
-  <%= link_to "家事分担へ戻る",  works_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "家事分担の編集",  edit_work_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "家事分担の削除",  work_path, method: :delete, class: "post" %>
-</div>
-<% if current_house.id == @work.house_id %>
-    投稿者<br>
-    <%= @work.user_name %><br>
-    担当家事<br>
-    <%= @work.work_name %><br>
-<% end %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">ワーク詳細</h3>
+      <p class="lead text-muted">役割の編集・削除が可能です。</p>
+      <p>
+        <%= link_to "編集", edit_work_path, class: "btn btn-outline-success my-2" %>
+        <%= link_to "削除", work_path, method: :delete, class: "btn btn-outline-danger my-2" %>
+        <%= link_to "一覧に戻る", works_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<main>
+  <div class="card col-sm-10 mx-auto mb-5">
+    <div class="card-body text-center mx-auto">
+      <% if current_house.id == @work.house_id %>
+        <div class="col my-5">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-text">
+                担当者:<%= @work.user_name %><br>
+                <br>
+                役割:<%= @work.work_name %><br>
+              </h4>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</main>

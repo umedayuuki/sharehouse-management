@@ -1,19 +1,42 @@
-<div>
-<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "担当家事の登録",  new_work_path, class: "post" %>
-</div>
-<br>
-<% @works.each do |work| %>
-  <% if current_house.id == work.house_id %>
-    投稿者<br>
-    <%= work.user_name %><br>
-    担当家事<br>
-    <%= work.work_name %><br>
-    <br>
-    <%= link_to work_path(work.id) do %>
-      編集・削除<br>
-    <% end %>
-  <% end %>
-<% end %>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">ワーク一覧</h3>
+      <p class="lead text-muted">役割の登録が可能です。クリックすると詳細画面へ移動します。</p>
+      <p>
+        <%= link_to "新規登録", new_work_path, class: "btn btn-outline-info my-2" %>
+        <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<main>
+  <div class="menu text-center ">
+    <div class="container">
+      <div class="row row-cols-2 row-cols-md-3">
+        <% @users.each do |user| %>
+            <div class="col mb-5">
+              <div class="card shadow-sm">
+                <%= image_tag(user.image, class:"users-logo") %>
+                <div class="card-body">
+                  <div class="card-text">
+                    <h4><%= user.user_name  %>の役割</h4>
+                      <% @works.each do |work| %>
+                        <% if current_house.id == work.house_id %>
+                          <%= link_to work_path(work.id) do %>
+                            <% if user.user_name == work.user_name %>
+                              <li><%= work.work_name %></li>
+                            <% end %>
+                          <% end %>
+                         <% end %>
+                      <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

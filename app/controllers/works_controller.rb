@@ -2,6 +2,7 @@ class WorksController < ApplicationController
   before_action :authenticate_house!
 
   def index
+    @users = User.where(house_id: current_house.id)
     @works = Work.all
   end
 
@@ -31,13 +32,19 @@ class WorksController < ApplicationController
   end
 
   def update
-    work = Work.find(params[:id])
-    work.update(work_params)
+    @work = Work.find(params[:id])
+    if @work.update(work_params)
+      redirect_to work_path(@work)
+    else
+      @users = User.where(house_id: current_house.id)
+      render :edit
+    end
   end
 
   def destroy
     work = Work.find(params[:id])
     work.destroy
+    redirect_to works_path
   end
 
   private
