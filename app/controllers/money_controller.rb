@@ -2,7 +2,8 @@ class MoneyController < ApplicationController
   before_action :authenticate_house!
 
   def index
-    @money = Money.all
+    @money = Money.all.order(id: "DESC")
+    @users = User.where(house_id: current_house.id)
   end
 
   def new
@@ -31,13 +32,19 @@ class MoneyController < ApplicationController
   end
 
   def update
-    money = Money.find(params[:id])
-    money.update(money_params)
+    @money = Money.find(params[:id])
+    if @money.update(money_params)
+      redirect_to money_path(@money)
+    else
+      @users = User.where(house_id: current_house.id)
+      render :edit
+    end
   end
 
   def destroy
     money = Money.find(params[:id])
     money.destroy
+    redirect_to money_index_path
   end
 
   private

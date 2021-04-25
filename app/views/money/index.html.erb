@@ -1,21 +1,71 @@
-<div>
-<%= link_to "メニュー画面へ戻る", root_path, class: "post" %>
-</div>
-<div>
-  <%= link_to "支出の登録",  new_money_path, class: "post" %>
-</div>
-<br>
-<% @money.each do |money| %>
-  <% if current_house.id == money.house_id %>
-    投稿者<br>
-    <%= money.user_name %><br>
-    アイテム名<br>
-    <%= money.item_name %><br>
-    金額<br>
-    <%= money.price %>円<br>
-    <br>
-    <%= link_to money_path(money.id) do %>
-      編集・削除<br>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h3 class="fw-light">マネー管理</h3>
+      <p class="lead text-muted">支出の登録が可能です。クリックすると詳細画面へ移動します。</p>
+      <p>
+        <%= link_to "支出登録", new_money_path, class: "btn btn-outline-info my-2" %>
+        <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
+      </p>
+    </div>
+  </div>
+</section>
+<main class="container">
+  <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <% @users.each do |user| %>
+      <div class="col">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 fw-normal"><%= user.user_name  %></h4>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title pricing-card-title">
+              <% @sum = 0 %>
+              <% @money.each do |money| %>
+                <% if current_house.id == money.house_id %>
+                    <% if user.user_name == money.user_name %>
+                      <% @sum += money.price %>
+                    <% end %>
+                <% end %>
+              <% end %>￥<%= @sum %><small class="text-muted"> /合計</small>
+            </h3>
+          </div>
+        </div>
+      </div>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+</main>
+<div class="card col-11 mx-auto mb-5">
+  <div class="table-responsive table-hover table-borderless col-9 mx-auto text-center">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>支払者</th>
+          <th>商品名</th>
+          <th>金額</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <% @money.each do |money| %>
+        <% if current_house.id == money.house_id %>
+          <tbody>
+            <tr>
+                <td>
+                  <%= money.user_name %>
+                </td>
+                <td>
+                  <%= money.item_name %>
+                </td>
+                <td>
+                  <%= money.price %>円
+                </td>
+                <td>
+                  <%= link_to "詳細", money_path(money.id), class: "btn btn-outline-secondary btn-sm" %>
+                </td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
