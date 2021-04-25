@@ -47,9 +47,8 @@ class RulesController < ApplicationController
   end
 
   private
-  
+
   def rule_params
     params.require(:rule).permit(:title, :content, :user_name).merge(house_id: current_house.id)
   end
-
 end

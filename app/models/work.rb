@@ -3,5 +3,4 @@ class Work < ApplicationRecord
 
   validates :user_name, presence: true
   validates :work_name, presence: true
-
 end

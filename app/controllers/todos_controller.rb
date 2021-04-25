@@ -3,7 +3,7 @@ class TodosController < ApplicationController
 
   def index
     @todo =  Todo.new
-    @todos = Todo.all.order(id: "DESC")
+    @todos = Todo.all.order(id: 'DESC')
     @users = User.where(house_id: current_house.id)
   end
 
@@ -12,7 +12,7 @@ class TodosController < ApplicationController
     if @todo.save
       redirect_to action: :index
     else
-      @todos = Todo.all.order(id: "DESC")
+      @todos = Todo.all.order(id: 'DESC')
       @users = User.where(house_id: current_house.id)
       render :index
     end
@@ -30,7 +30,7 @@ class TodosController < ApplicationController
   def update
     @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
-       redirect_to todo_path(@todo)
+      redirect_to todo_path(@todo)
     else
       @users = User.where(house_id: current_house.id)
       render :edit
@@ -44,7 +44,7 @@ class TodosController < ApplicationController
   end
 
   private
-  
+
   def todo_params
     params.require(:todo).permit(:limit, :list, :user_name).merge(house_id: current_house.id)
   end

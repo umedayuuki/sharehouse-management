@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
-       redirect_to schedule_path(@schedule)
+      redirect_to schedule_path(@schedule)
     else
       @users = User.where(house_id: current_house.id)
       render :edit
@@ -44,7 +44,7 @@ class SchedulesController < ApplicationController
   end
 
   private
-  
+
   def schedule_params
     params.require(:schedule).permit(:start_time, :event, :user_name).merge(house_id: current_house.id)
   end

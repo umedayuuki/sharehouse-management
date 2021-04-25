@@ -48,9 +48,8 @@ class WorksController < ApplicationController
   end
 
   private
-  
+
   def work_params
     params.require(:work).permit(:work_name, :user_name).merge(house_id: current_house.id)
   end
-
 end

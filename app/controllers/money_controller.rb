@@ -2,7 +2,7 @@ class MoneyController < ApplicationController
   before_action :authenticate_house!
 
   def index
-    @money = Money.all.order(id: "DESC")
+    @money = Money.all.order(id: 'DESC')
     @users = User.where(house_id: current_house.id)
   end
 
@@ -48,9 +48,8 @@ class MoneyController < ApplicationController
   end
 
   private
-  
+
   def money_params
     params.require(:money).permit(:item_name, :price, :user_name).merge(house_id: current_house.id)
   end
-
 end

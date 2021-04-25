@@ -3,7 +3,7 @@ class House < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :users
   has_many :chats
   has_many :rules
@@ -16,7 +16,7 @@ class House < ApplicationRecord
     validates :house_name
     validates :address
   end
-  
+
   def email_required?
     false
   end
@@ -28,5 +28,4 @@ class House < ApplicationRecord
   def will_save_change_to_email?
     false
   end
-  
 end

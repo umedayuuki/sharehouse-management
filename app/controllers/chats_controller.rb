@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
 
   def index
     @chat = Chat.new
-    @chats = Chat.all.order(id: "DESC")
+    @chats = Chat.all.order(id: 'DESC')
     @users = User.where(house_id: current_house.id)
   end
 
@@ -12,7 +12,7 @@ class ChatsController < ApplicationController
     if @chat.save
       redirect_to action: :index
     else
-      @chats = Chat.all.order(id: "DESC")
+      @chats = Chat.all.order(id: 'DESC')
       @users = User.where(house_id: current_house.id)
       render :index
     end
@@ -30,7 +30,7 @@ class ChatsController < ApplicationController
   def update
     @chat = Chat.find(params[:id])
     if @chat.update(chat_params)
-       redirect_to chat_path(@chat)
+      redirect_to chat_path(@chat)
     else
       @users = User.where(house_id: current_house.id)
       render :edit
@@ -44,9 +44,8 @@ class ChatsController < ApplicationController
   end
 
   private
-  
+
   def chat_params
     params.require(:chat).permit(:talk, :image, :user_name).merge(house_id: current_house.id)
   end
-
 end
