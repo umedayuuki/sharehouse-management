@@ -14,32 +14,32 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="form-group">
-        <%= f.label "名前（シェアハウス）" %><br />
-        <%= f.text_field :house_name, autofocus: true, autocomplete: "house_name" %>
+        <%= f.label "名前（シェアハウス）" %><br>
+        <%= f.text_field :house_name, autocomplete: "off" %>
       </div>
 
       <div class="form-group">
         <%= f.label "住所（シェアハウス）" %><br>
-        <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+        <%= f.text_field :address, autocomplete: "off" %>
       </div>
 
       <div class="form-group">
         <%= f.label "新規パスワード（6文字以上）" %><br>
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <%= f.password_field :password, autocomplete: "off" %>
       </div>
 
       <div class="form-group">
-        <%= f.label "新規パスワード（確認用）" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.label "新規パスワード（確認用）" %><br>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
       </div>
 
       <div class="form-group">
-        <%= f.label "変更前パスワード（6文字以上）" %><br />
-        <%= f.password_field :current_password, autocomplete: "current-password" %>
+        <%= f.label "変更前パスワード（必須）" %><br>
+        <%= f.password_field :current_password, autocomplete: "off" %>
       </div>
 
       <div class="actions">
-        <%= f.submit "変更", :class => "btn btn-sm btn-outline-dark disabled" %>
+        <%= f.submit "変更", :class => "btn btn-outline-dark disabled" %>
       </div>
 
     <% end %>

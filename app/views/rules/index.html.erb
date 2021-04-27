@@ -2,9 +2,9 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h3 class="fw-light">ルール一覧</h3>
-      <p class="lead text-muted">共同生活を行う上でルールは必ず守りましょう。</p>
+      <p class="lead text-muted">共同生活を行う上でルールは必ず守りましょう。クリックすると詳細画面へ移動します。</p>
       <p>
-        <%= link_to "ルールを登録する", new_rule_path, class: "btn btn-outline-info my-2" %>
+        <%= link_to "新規作成", new_rule_path, class: "btn btn-outline-info my-2" %>
         <%= link_to "メニューに戻る", root_path, class: "btn btn-outline-warning my-2" %>
       </p>
     </div>
@@ -18,8 +18,12 @@
           <div class="col-md-4">
             <div class="border mb-4 shadow-sm">
               <div class="col p-4 flex-column">
-                <strong class="d-inline-block mb-2 text-secondary">作成者:<%= rule.user_name %></strong>
-                <h4 class="mt-2"><%= rule.title %></h4>
+                <strong class="d-inline-block mb-2 text-secondary">
+                  作成者:<%= rule.user_name %>
+                </strong>
+                <h4 class="mt-2">
+                  <%= rule.title %>
+                </h4>
                 <br>
                 <%= link_to "詳細確認", rule_path(rule.id), class: "btn btn-outline-secondary btn-sm" %>
               </div>

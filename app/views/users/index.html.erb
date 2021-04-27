@@ -11,7 +11,7 @@
   </div>
 </section>
 <main>
-  <div class="menu text-center ">
+  <div class="menu text-center">
     <div class="container">
       <div class="row row-cols-2 row-cols-md-3">
         <% @users.each do |user| %>
@@ -20,7 +20,9 @@
               <div class="card shadow-sm">
                 <%= link_to image_tag(user.image, class:"users-logo"), user_path(user.id) %>
                 <div class="card-body">
-                  <p class="card-text"><%= link_to user.user_name, user_path(user.id), class: "post" %></p>
+                  <p class="card-text">
+                    <%= link_to user.user_name, user_path(user.id) %>
+                  </p>
                 </div>
               </div>
             </div>

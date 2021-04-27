@@ -4,42 +4,41 @@
     <title>シェアハウス管理アプリ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <style>
-    .container1{
-      background-color: #ffeddc;
-    }
-    .card{
-      background-color: #f5f5f5;
-    }
-    a{
-      color: black;
-    }
-    a:hover{
-      text-decoration: none;
-    }
-    .top-logo{
-      width: 100%;
-      height: 200px;
-    }
-    .users-logo{
-      width: 100%;
-      height: 220px;
-    }
-    .show-logo{
-      width: 100%;
-      height: 520px;
-    }
-    .chats-logos{
-      width: 80px;
-      height: 80px;
-    }
-    li{
-      list-style: none;
-    }
+      .container1 {
+        background-color: #ffeddc;
+      }
+      .card {
+        background-color: #f5f5f5;
+      }
+      a {
+        color: black;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .top-logo {
+        width: 100%;
+        height: 200px;
+      }
+      .users-logo {
+        width: 100%;
+        height: 220px;
+      }
+      .show-logo {
+        width: 100%;
+        height: 520px;
+      }
+      .chats-logos {
+        width: 80px;
+        height: 80px;
+      }
+      li {
+        list-style: none;
+      }
     </style>
   </head>
 
@@ -52,11 +51,15 @@
           </div>
           <div class="devise col-4">
             <% if house_signed_in? %>
-              <h6 class="m-3 p-3"><%= link_to current_house.house_name, edit_house_registration_path(current_house) %>
-              <%= link_to "ログアウト", destroy_house_session_path, method: :delete %></h6>
+              <h6 class="m-3 p-3">
+                <%= link_to current_house.house_name, edit_house_registration_path(current_house) %>
+                <%= link_to "ログアウト", destroy_house_session_path, method: :delete %>
+              </h6>
             <% else %>
-              <h6 class="m-3 p-3"><%= link_to "新規登録", new_house_registration_path %>
-              <%= link_to "ログイン", new_house_session_path %></h6>
+              <h6 class="m-3 p-3">
+                <%= link_to "新規登録", new_house_registration_path %>
+                <%= link_to "ログイン", new_house_session_path %>
+              </h6>
             <% end %>
           </div>
         </div>

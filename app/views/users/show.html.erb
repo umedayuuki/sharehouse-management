@@ -20,11 +20,13 @@
             <%= link_to image_tag(@user.image, class:"show-logo") %>
             <div class="card-body">
               <h4 class="card-text">
-                名前:<%= @user.user_name %><br>
-                誕生日:<%= @user.birthday %>
+                名前：<%= @user.user_name %><br>
+                <br>
+                誕生日：<%= @user.birthday %>
               </h4>
             </div>
           </div>
+        </div>
       <% end %>
     </div>
   </div>

@@ -6,7 +6,7 @@
       <p>
         <%= link_to "編集", edit_schedule_path, class: "btn btn-outline-success my-2" %>
         <%= link_to "削除", schedule_path, method: :delete, class: "btn btn-outline-danger my-2" %>
-        <%= link_to "ルームに戻る", schedules_path, class: "btn btn-outline-warning my-2" %>
+        <%= link_to "カレンダーに戻る", schedules_path, class: "btn btn-outline-warning my-2" %>
       </p>
     </div>
   </div>
@@ -19,14 +19,15 @@
           <div class="card shadow-sm">
             <div class="card-body">
               <h4 class="card-text">
-                投稿者:<%= @schedule.user_name %><br>
+                登録者：<%= @schedule.user_name %><br>
                 <br>
-                イベント:<%= @schedule.event %><br>
+                イベント：<%= @schedule.event %><br>
                 <br>
-                日時:<%= @schedule.start_time %>
+                日時：<%= @schedule.start_time %>
               </h4>
             </div>
           </div>
+        </div>
       <% end %>
     </div>
   </div>
