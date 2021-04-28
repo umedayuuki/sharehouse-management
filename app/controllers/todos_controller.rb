@@ -1,10 +1,12 @@
 class TodosController < ApplicationController
   before_action :authenticate_house!
+  before_action :set_users, only: [:index, :edit]
+  before_action :set_find_todo, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect, only: [:show, :edit]
 
   def index
-    @todo =  Todo.new
+    @todo = Todo.new
     @todos = Todo.all.order(id: 'DESC')
-    @users = User.where(house_id: current_house.id)
   end
 
   def create
@@ -19,16 +21,12 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo = Todo.find(params[:id])
   end
 
   def edit
-    @todo = Todo.find(params[:id])
-    @users = User.where(house_id: current_house.id)
   end
 
   def update
-    @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
       redirect_to todo_path(@todo)
     else
@@ -38,7 +36,6 @@ class TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
     @todo.destroy
     redirect_to todos_path
   end
@@ -48,4 +45,17 @@ class TodosController < ApplicationController
   def todo_params
     params.require(:todo).permit(:limit, :list, :user_name).merge(house_id: current_house.id)
   end
+
+  def set_users
+    @users = User.where(house_id: current_house.id)
+  end
+
+  def set_find_todo
+    @todo = Todo.find(params[:id])
+  end
+  
+  def set_redirect
+    redirect_to root_path if @todo.house_id != current_house.id
+  end
+
 end

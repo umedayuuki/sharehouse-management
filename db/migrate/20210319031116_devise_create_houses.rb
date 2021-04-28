@@ -4,8 +4,8 @@ class DeviseCreateHouses < ActiveRecord::Migration[6.0]
   def change
     create_table :houses do |t|
       ## Database authenticatable
-      t.string :house_name,         null: false, default: ""
-      t.string :address,            null: false, default: ""
+      t.string :house_name, null: false, default: ""
+      t.string :address, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable

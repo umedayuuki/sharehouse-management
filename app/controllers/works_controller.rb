@@ -1,14 +1,15 @@
 class WorksController < ApplicationController
   before_action :authenticate_house!
+  before_action :set_users, only: [:index, :new, :edit]
+  before_action :set_find_work, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect, only: [:show, :edit]
 
   def index
-    @users = User.where(house_id: current_house.id)
     @works = Work.all
   end
 
   def new
     @work = Work.new
-    @users = User.where(house_id: current_house.id)
   end
 
   def create
@@ -23,16 +24,12 @@ class WorksController < ApplicationController
   end
 
   def show
-    @work = Work.find(params[:id])
   end
 
   def edit
-    @work = Work.find(params[:id])
-    @users = User.where(house_id: current_house.id)
   end
 
   def update
-    @work = Work.find(params[:id])
     if @work.update(work_params)
       redirect_to work_path(@work)
     else
@@ -42,8 +39,7 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    work = Work.find(params[:id])
-    work.destroy
+    @work.destroy
     redirect_to works_path
   end
 
@@ -52,4 +48,17 @@ class WorksController < ApplicationController
   def work_params
     params.require(:work).permit(:work_name, :user_name).merge(house_id: current_house.id)
   end
+
+  def set_users
+    @users = User.where(house_id: current_house.id)
+  end
+
+  def set_find_work
+    @work = Work.find(params[:id])
+  end
+
+  def set_redirect
+    redirect_to root_path if @work.house_id != current_house.id
+  end
+
 end

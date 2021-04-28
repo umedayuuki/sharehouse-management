@@ -1,10 +1,12 @@
 class ChatsController < ApplicationController
   before_action :authenticate_house!
+  before_action :set_users, only: [:index, :edit]
+  before_action :set_find_chat, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect, only: [:show, :edit]
 
   def index
     @chat = Chat.new
     @chats = Chat.all.order(id: 'DESC')
-    @users = User.where(house_id: current_house.id)
   end
 
   def create
@@ -19,16 +21,12 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @chat = Chat.find(params[:id])
   end
 
   def edit
-    @chat = Chat.find(params[:id])
-    @users = User.where(house_id: current_house.id)
   end
 
   def update
-    @chat = Chat.find(params[:id])
     if @chat.update(chat_params)
       redirect_to chat_path(@chat)
     else
@@ -38,7 +36,6 @@ class ChatsController < ApplicationController
   end
 
   def destroy
-    @chat = Chat.find(params[:id])
     @chat.destroy
     redirect_to chats_path
   end
@@ -48,4 +45,17 @@ class ChatsController < ApplicationController
   def chat_params
     params.require(:chat).permit(:talk, :image, :user_name).merge(house_id: current_house.id)
   end
+
+  def set_users
+    @users = User.where(house_id: current_house.id)
+  end
+
+  def set_find_chat
+    @chat = Chat.find(params[:id])
+  end
+
+  def set_redirect
+    redirect_to root_path if @chat.house_id != current_house.id
+  end
+
 end

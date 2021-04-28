@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_house!
+  before_action :set_find_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect, only: [:show, :edit]
 
   def index
     @users = User.all
@@ -19,15 +21,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -36,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path
   end
@@ -46,4 +44,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:user_name, :image, :birthday).merge(house_id: current_house.id)
   end
+
+  def set_find_user
+    @user = User.find(params[:id])
+  end
+
+  def set_redirect
+    redirect_to root_path if @user.house_id != current_house.id
+  end
+
 end

@@ -1,5 +1,8 @@
 class RulesController < ApplicationController
   before_action :authenticate_house!
+  before_action :set_users, only: [:new, :edit]
+  before_action :set_find_rule, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect, only: [:show, :edit]
 
   def index
     @rules = Rule.all
@@ -7,7 +10,6 @@ class RulesController < ApplicationController
 
   def new
     @rule = Rule.new
-    @users = User.where(house_id: current_house.id)
   end
 
   def create
@@ -22,16 +24,12 @@ class RulesController < ApplicationController
   end
 
   def show
-    @rule = Rule.find(params[:id])
   end
 
   def edit
-    @rule = Rule.find(params[:id])
-    @users = User.where(house_id: current_house.id)
   end
 
   def update
-    @rule = Rule.find(params[:id])
     if @rule.update(rule_params)
       redirect_to rule_path(@rule)
     else
@@ -41,8 +39,7 @@ class RulesController < ApplicationController
   end
 
   def destroy
-    rule = Rule.find(params[:id])
-    rule.destroy
+    @rule.destroy
     redirect_to rules_path
   end
 
@@ -51,4 +48,17 @@ class RulesController < ApplicationController
   def rule_params
     params.require(:rule).permit(:title, :content, :user_name).merge(house_id: current_house.id)
   end
+
+  def set_users
+    @users = User.where(house_id: current_house.id)
+  end
+
+  def set_find_rule
+    @rule = Rule.find(params[:id])
+  end
+
+  def set_redirect
+    redirect_to root_path if @rule.house_id != current_house.id
+  end
+
 end

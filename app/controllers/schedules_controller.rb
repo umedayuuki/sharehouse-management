@@ -1,10 +1,12 @@
 class SchedulesController < ApplicationController
   before_action :authenticate_house!
+  before_action :set_users, only: [:index, :edit]
+  before_action :set_find_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect, only: [:show, :edit]
 
   def index
     @schedule = Schedule.new
     @schedules = Schedule.all
-    @users = User.where(house_id: current_house.id)
   end
 
   def create
@@ -19,16 +21,12 @@ class SchedulesController < ApplicationController
   end
 
   def show
-    @schedule = Schedule.find(params[:id])
   end
 
   def edit
-    @schedule = Schedule.find(params[:id])
-    @users = User.where(house_id: current_house.id)
   end
 
   def update
-    @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
       redirect_to schedule_path(@schedule)
     else
@@ -38,8 +36,7 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    schedule = Schedule.find(params[:id])
-    schedule.destroy
+    @schedule.destroy
     redirect_to schedules_path
   end
 
@@ -48,4 +45,17 @@ class SchedulesController < ApplicationController
   def schedule_params
     params.require(:schedule).permit(:start_time, :event, :user_name).merge(house_id: current_house.id)
   end
+
+  def set_users
+    @users = User.where(house_id: current_house.id)
+  end
+
+  def set_find_schedule
+    @schedule = Schedule.find(params[:id])
+  end
+
+  def set_redirect
+    redirect_to root_path if @schedule.house_id != current_house.id
+  end
+
 end
