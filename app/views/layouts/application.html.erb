@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    
+
     <style>
       .container1 {
         background-color: #ffeddc;
@@ -47,10 +47,10 @@
     <header>
       <div class="container1 text-center">
         <div class="row">
-          <div class="title col-8">
+          <div class="title col-7">
             <h4 class="m-3 p-2"><a href="/">シェアハウス管理アプリ</h4>
           </div>
-          <div class="devise col-4">
+          <div class="devise col-5">
             <% if house_signed_in? %>
               <h6 class="m-3 p-3">
                 <%= link_to current_house.house_name, edit_house_registration_path(current_house) %>
