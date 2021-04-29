@@ -1,5 +1,4 @@
 class Rule < ApplicationRecord
-
   belongs_to :house
 
   with_options presence: true do
@@ -7,5 +6,4 @@ class Rule < ApplicationRecord
     validates :title
     validates :content
   end
-  
 end

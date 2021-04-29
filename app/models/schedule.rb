@@ -1,5 +1,4 @@
 class Schedule < ApplicationRecord
-
   belongs_to :house
 
   with_options presence: true do
@@ -7,5 +6,4 @@ class Schedule < ApplicationRecord
     validates :start_time
     validates :event
   end
-  
 end

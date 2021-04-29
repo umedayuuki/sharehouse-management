@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   has_many :chats
   has_many :rules
   has_many :money
@@ -14,5 +13,4 @@ class User < ApplicationRecord
     validates :birthday
     validates :image
   end
-
 end

@@ -60,5 +60,4 @@ class WorksController < ApplicationController
   def set_redirect
     redirect_to root_path if @work.house_id != current_house.id
   end
-
 end

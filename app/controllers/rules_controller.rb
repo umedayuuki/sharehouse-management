@@ -60,5 +60,4 @@ class RulesController < ApplicationController
   def set_redirect
     redirect_to root_path if @rule.house_id != current_house.id
   end
-
 end

@@ -1,5 +1,4 @@
 class Chat < ApplicationRecord
-
   belongs_to :house
   has_one_attached :image
 
@@ -7,5 +6,4 @@ class Chat < ApplicationRecord
     validates :user_name
     validates :talk
   end
-  
 end

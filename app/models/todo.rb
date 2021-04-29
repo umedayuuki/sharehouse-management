@@ -1,5 +1,4 @@
 class Todo < ApplicationRecord
-
   belongs_to :house
 
   with_options presence: true do
@@ -7,5 +6,4 @@ class Todo < ApplicationRecord
     validates :list
     validates :limit
   end
-  
 end

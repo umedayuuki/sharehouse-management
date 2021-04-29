@@ -53,9 +53,8 @@ class TodosController < ApplicationController
   def set_find_todo
     @todo = Todo.find(params[:id])
   end
-  
+
   def set_redirect
     redirect_to root_path if @todo.house_id != current_house.id
   end
-
 end

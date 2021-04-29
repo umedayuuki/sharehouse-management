@@ -60,5 +60,4 @@ class MoneyController < ApplicationController
   def set_redirect
     redirect_to root_path if @money.house_id != current_house.id
   end
-
 end

@@ -1,5 +1,4 @@
 class Money < ApplicationRecord
-
   belongs_to :house
 
   with_options presence: true do
@@ -8,5 +7,4 @@ class Money < ApplicationRecord
     validates :price, format: { with: /\A[0-9]+\z/ }
     validates :price, numericality: true
   end
-  
 end

@@ -57,5 +57,4 @@ class SchedulesController < ApplicationController
   def set_redirect
     redirect_to root_path if @schedule.house_id != current_house.id
   end
-
 end
