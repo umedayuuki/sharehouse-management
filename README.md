@@ -31,29 +31,31 @@ https://sharehouse-management.herokuapp.com/
 パスワード（6文字以上）：111111  
 
 ## GIFでの機能説明
-### シェアハウスの新規登録・ログイン  
+
+### シェアハウスの新規登録・ログイン
 [![Image from Gyazo](https://i.gyazo.com/0027e189f41307450dfdba1bc69b4c5c.gif)](https://gyazo.com/0027e189f41307450dfdba1bc69b4c5c)
-### メニュー画面へ移行  
+### メニュー画面へ移動
 [![Image from Gyazo](https://i.gyazo.com/ba9eb17203bd2b2916b70dc7cb5e5ca3.gif)](https://gyazo.com/ba9eb17203bd2b2916b70dc7cb5e5ca3)
-### シェアハウス情報の確認・編集  
+### シェアハウス情報の確認・編集
 [![Image from Gyazo](https://i.gyazo.com/74c489a08675e8488ed930dc30e1ddcf.gif)](https://gyazo.com/74c489a08675e8488ed930dc30e1ddcf)
-### ルームメイトの登録・表示  
+### ルームメイトの登録・表示
 [![Image from Gyazo](https://i.gyazo.com/6214d8050415dc12f90cad49a4ec00a8.gif)](https://gyazo.com/6214d8050415dc12f90cad49a4ec00a8)
-### チャットの登録・表示  
+### チャットの登録・表示
 [![Image from Gyazo](https://i.gyazo.com/acd99d95b88e22476451c0efac5e574c.gif)](https://gyazo.com/acd99d95b88e22476451c0efac5e574c)
-### スケジュールの登録・表示  
+### スケジュールの登録・表示
 [![Image from Gyazo](https://i.gyazo.com/e5d8a67faee314b0c23f86086fcaef71.gif)](https://gyazo.com/e5d8a67faee314b0c23f86086fcaef71)
-### ルールの登録・表示  
+### ルールの登録・表示
 [![Image from Gyazo](https://i.gyazo.com/7132195f9be131194f30a2ab9a3b1f7a.gif)](https://gyazo.com/7132195f9be131194f30a2ab9a3b1f7a)
-### TODOの登録・表示  
+### TODOの登録・表示
 [![Image from Gyazo](https://i.gyazo.com/274fe0357085244d18fbb7f1c7b6e6bc.gif)](https://gyazo.com/274fe0357085244d18fbb7f1c7b6e6bc)
-### 支出の登録・表示  
+### 支出の登録・表示
 [![Image from Gyazo](https://i.gyazo.com/7367dc94a59f821b6244922f0ec5c4d9.gif)](https://gyazo.com/7367dc94a59f821b6244922f0ec5c4d9)
-### 役割の登録・表示  
+### 役割の登録・表示
 [![Image from Gyazo](https://i.gyazo.com/08cc75f077cc11c084bc4550879f6fcc.gif)](https://gyazo.com/08cc75f077cc11c084bc4550879f6fcc)
 
 ## DB設計
-### ER図  
+
+### ER図
 <img width="642" alt="シェアハウスER図" src="https://user-images.githubusercontent.com/74130074/116638404-39d4ac80-a9a1-11eb-9c00-c9dbf77c370e.png">
 
 # テーブル設計
